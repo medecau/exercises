@@ -36,6 +36,21 @@ class TestBatch(unittest.TestCase):
     def setUp(self):
         pass
 
+    def test_is_prime_1(self):
+        self.assertTrue(is_prime(2))
+
+    def test_is_prime_2(self):
+        self.assertTrue(is_prime(11))
+
+    def test_is_prime_3(self):
+        self.assertFalse(is_prime(0))
+
+    def test_is_prime_4(self):
+        self.assertFalse(is_prime(1))
+
+    def test_is_prime_5(self):
+        self.assertFalse(is_prime(-1))
+
     def test_next_prime_1(self):
         self.assertEqual(next_prime(-1), 2)
 
@@ -51,20 +66,6 @@ class TestBatch(unittest.TestCase):
     def test_next_prime_5(self):
         self.assertEqual(next_prime(9), 11)
 
-    def test_is_prime_1(self):
-        self.assertTrue(is_prime(2))
-
-    def test_is_prime_2(self):
-        self.assertTrue(is_prime(11))
-
-    def test_is_prime_3(self):
-        self.assertFalse(is_prime(0))
-
-    def test_is_prime_4(self):
-        self.assertFalse(is_prime(1))
-
-    def test_is_prime_5(self):
-        self.assertFalse(is_prime(-1))
 
 def do_tests():
     batch = unittest.TestLoader().loadTestsFromTestCase(TestBatch)
