@@ -7,7 +7,7 @@ def is_prime(num):
         return False
     else:
         l=int(ceil(sqrt(num)))
-        for i in xrange(3, l, 2):
+        for i in xrange(3, l+1, 2):
             if num%i==0:
                 return False
             else:
@@ -50,6 +50,9 @@ class TestBatch(unittest.TestCase):
 
     def test_is_prime_5(self):
         self.assertFalse(is_prime(-1))
+
+    def test_is_prime_6(self):
+        self.assertFalse(is_prime(9))
 
     def test_next_prime_1(self):
         self.assertEqual(next_prime(-1), 2)
