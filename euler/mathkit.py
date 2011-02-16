@@ -31,6 +31,20 @@ def next_prime(num):
     else:
         return 2
 
+def get_factors(num):
+    from math import ceil
+    from math import sqrt
+    factors=[]
+    square=sqrt(num)
+    if square.is_integer():
+        factors.append(int(square))
+    else:
+        square+=1
+    for f in xrange(1,ceil(square)):
+        if num%f==0:
+            
+            factors+=[f, int(num/f)]
+    return factors
 
 class TestBatch(unittest.TestCase):
     def setUp(self):
@@ -68,6 +82,17 @@ class TestBatch(unittest.TestCase):
 
     def test_next_prime_5(self):
         self.assertEqual(next_prime(9), 11)
+
+    def test_get_factors_1(self):
+        factors=get_factors(8)
+        factors.sort()
+        self.assertEqual(factors, [1,2,4,8])
+
+    def test_get_factors_2(self):
+        factors=get_factors(25)
+        factors.sort()
+        self.assertEqual(factors, [1,5,25])
+
 
 
 def do_tests():
