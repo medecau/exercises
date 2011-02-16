@@ -40,7 +40,7 @@ def get_factors(num):
         factors.append(int(square))
     else:
         square+=1
-    for f in xrange(1,ceil(square)):
+    for f in xrange(1,int(ceil(square))):
         if num%f==0 and f not in factors:
             factors+=[f, int(num/f)]
     return factors
