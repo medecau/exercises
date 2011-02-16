@@ -41,8 +41,7 @@ def get_factors(num):
     else:
         square+=1
     for f in xrange(1,ceil(square)):
-        if num%f==0:
-            
+        if num%f==0 and f not in factors:
             factors+=[f, int(num/f)]
     return factors
 
@@ -84,16 +83,26 @@ class TestBatch(unittest.TestCase):
         self.assertEqual(next_prime(9), 11)
 
     def test_get_factors_1(self):
+        factors=get_factors(1)
+        self.assertEqual(factors, [1])
+
+    def test_get_factors_2(self):
+        factors=get_factors(2)
+        self.assertEqual(factors, [1,2])
+
+    def test_get_factors_3(self):
+        factors=get_factors(3)
+        self.assertEqual(factors, [1,3])
+
+    def test_get_factors_4(self):
         factors=get_factors(8)
         factors.sort()
         self.assertEqual(factors, [1,2,4,8])
 
-    def test_get_factors_2(self):
+    def test_get_factors_5(self):
         factors=get_factors(25)
         factors.sort()
         self.assertEqual(factors, [1,5,25])
-
-
 
 def do_tests():
     batch = unittest.TestLoader().loadTestsFromTestCase(TestBatch)
