@@ -3,7 +3,7 @@ import unittest
 def is_prime(num):
     from math import ceil
     from math import sqrt
-    if (num&1 == 0 and num>2) or num < 2 or type(num) is not int:
+    if (num%2 == 0 and num>2) or num < 2 or type(num) is not int:
         return False
     else:
         l=int(ceil(sqrt(num)))
@@ -31,7 +31,7 @@ def next_prime(num):
     else:
         return 2
 
-def get_factors(num):
+def get_factors(num, short=False):
     from math import ceil
     from math import sqrt
     factors=[]
@@ -43,7 +43,11 @@ def get_factors(num):
     for f in xrange(1,int(ceil(square))):
         if num%f==0 and f not in factors:
             factors+=[f, int(num/f)]
-    return factors
+    factors.sort()
+    if short:
+        return factors[1:-1]
+    else:
+        return factors
 
 class TestBatch(unittest.TestCase):
     def setUp(self):
@@ -103,6 +107,16 @@ class TestBatch(unittest.TestCase):
         factors=get_factors(25)
         factors.sort()
         self.assertEqual(factors, [1,5,25])
+
+    def test_get_factors_6(self):
+        factors=get_factors(8, True)
+        factors.sort()
+        self.assertEqual(factors, [2,4])
+
+    def test_get_factors_7(self):
+        factors=get_factors(25, True)
+        factors.sort()
+        self.assertEqual(factors, [5])
 
 def do_tests():
     batch = unittest.TestLoader().loadTestsFromTestCase(TestBatch)
