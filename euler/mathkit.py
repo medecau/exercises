@@ -1,5 +1,20 @@
 import unittest
 
+class Fibonacci(object):
+    a, o=0, 1
+    def __init__(self):
+        pass
+    def next(self):
+        self.a, self.o = self.o, self.a+self.o
+        return self.o
+
+def fib_seq(num):
+    seq=[]
+    f=Fibonacci()
+    for i in range(num):
+        seq.append(f.next())
+    return seq
+
 def is_prime(num):
     from math import ceil
     from math import sqrt
@@ -113,6 +128,10 @@ class TestBatch(unittest.TestCase):
         factors=get_factors(25, True)
         factors.sort()
         self.assertEqual(factors, [5])
+
+    def test_fibonacci_1(self):
+        fibonacci_nums=fib_seq(10)
+        self.assertEqual(fibonacci_nums, [1, 2, 3, 5, 8, 13, 21, 34, 55, 89])
 
 def do_tests():
     batch = unittest.TestLoader().loadTestsFromTestCase(TestBatch)
