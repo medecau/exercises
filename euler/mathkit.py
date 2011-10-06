@@ -10,13 +10,11 @@ def is_prime(num):
         for i in xrange(3, l+1, 2):
             if num%i==0:
                 return False
-            else:
-                continue
         return True
 
 def next_prime(num):
     if num > 2:
-        if num&1==0:
+        if num%2==0:
             num-=1
         else:
             pass
@@ -38,13 +36,11 @@ def get_factors(num, short=False):
     square=sqrt(num)
     if square.is_integer():
         factors.append(int(square))
-    else:
-        square+=1
     for f in xrange(1,int(ceil(square))):
-        if num%f==0 and f not in factors:
-            factors+=[f, int(num/f)]
-    factors.sort()
+        if num%f==0:
+            factors.extend([f, int(num/f)])
     if short:
+        factors.sort()
         return factors[1:-1]
     else:
         return factors
