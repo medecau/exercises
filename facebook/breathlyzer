@@ -1,0 +1,29 @@
+#!/usr/bin/python
+import sys
+from difflib import get_close_matches, SequenceMatcher
+from re import findall
+
+#wordlistfile='/var/tmp/twl06.txt'
+wordlistfile='twl06.txt'
+wordlist=[word.strip('\s\t\n\r').lower() for word in open(wordlistfile).read().split('\n')]
+
+post='tihs sententcnes iss nout varrry goud'
+score=0
+for word in findall('[\w]+',post):
+    print word
+    closest=get_close_matches(word, wordlist, 1)[0]
+    opcodes=SequenceMatcher(None, post[0], closest).get_opcodes()
+    print closest
+    print opcodes
+    for opcode in opcodes:
+        if opcode[0]!='equal':
+            score+=1
+    print score
+
+#print score
+#print opcodes
+
+
+
+
+#range_limit=int(open(sys.argv[1]).read().strip())

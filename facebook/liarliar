@@ -1,0 +1,44 @@
+#!/usr/bin/python
+import sys
+import re
+from collections import defaultdict
+
+f=open(sys.argv[1])
+users_num=int(f.readline().strip())
+users=defaultdict(dict)
+strip=str.strip('\s\t\n')
+
+A=set()
+B=set()
+
+for each_char in range(users_num):
+    name, num_of_accusations = re.findall('[^\s\t\n:]+',f.readline())
+    for each_accusation in range(int(num_of_accusations)):
+        accusee=f.readline().strip()
+        try:
+            users[name]['others'].add(accusee)
+        except:
+            users[name]['others']=set([accusee])
+        try:
+            users[accusee]['others'].add(name)
+        except:
+            users[accusee]['others']=set([name])
+
+
+queue=[users.iterkeys().next()]
+while len(queue)>0:
+    next = queue.pop()
+    others=users[next]['others']
+    if next in A:
+        queue.extend(list(others&B^others))
+        B.update(others)
+    else:
+        queue.extend(list(others&A^others))
+        A.update(others)
+
+Alen=len(A)
+Blen=len(B)
+if Alen>Blen:
+    print '%d %d' % (Alen, Blen)
+else:
+    print '%d %d' % (Blen, Alen)
