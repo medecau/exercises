@@ -11,13 +11,18 @@ By considering the terms in the Fibonacci sequence whose values
 do not exceed four million, find the sum of the even-valued terms.
 '''
 
-result = 2
-fibo = [1,2]
-while True:
-    next = sum(fibo[-2:])
-    if next > 4000000:
-        break
-    elif next%2 == 0:
-        result += next
-    fibo.append(next)
-print result
+from mathkit import Fibonacci
+
+def ex2(num=4000000):
+    f=Fibonacci()
+    r=0
+    while True:
+        next=f.next()
+        if next>num:
+            break
+        elif next%2==0:
+            r+=next
+    return r
+
+if __name__ == "__main__":
+    print ex2()
