@@ -60,6 +60,20 @@ def get_factors(num, short=False):
     else:
         return factors
 
+def sum_digits(num):
+    sum=0
+    while num>0:
+        sum+=num%10
+        num=int(num/10)
+    return sum
+
+def is_palindromic(val):
+    s=str(val)
+    s2=list(s)
+    s2.reverse()
+    s2=''.join(s2)
+    return s==s2
+
 class TestBatch(unittest.TestCase):
     def setUp(self):
         pass
