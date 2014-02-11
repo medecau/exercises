@@ -16,7 +16,7 @@ Find the maximum total from top to bottom in triangle.txt (right click and 'Save
 NOTE: This is a much more difficult version of Problem 18. It is not possible to try every route to solve this problem, as there are 299 altogether! If you could check one trillion (1012) routes every second it would take over twenty billion years to check them all. There is an efficient algorithm to solve it. ;o)
 '''
 
-t=open('triangle.txt').read()
+t=open('067.txt').read()
 
 t=t.split('\n')[1:]
 t=[i.split(' ') for i in t]
@@ -27,7 +27,7 @@ for i in range(len(t))[-2::-1]:
         t[i][j]+=max(t[i+1][j:j+2])
 
 print t[0][0]
-        
+
 
 
 

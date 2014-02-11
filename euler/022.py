@@ -18,7 +18,7 @@ def word_value(word):
         value+=letter_value(letter)
     return value
 
-content=open('names.txt').read()
+content=open('022.txt').read()
 names=[name[1:-1] for name in content.split(',')]
 names.sort()
 val=0
