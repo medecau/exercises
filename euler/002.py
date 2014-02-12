@@ -11,18 +11,22 @@ By considering the terms in the Fibonacci sequence whose values
 do not exceed four million, find the sum of the even-valued terms.
 '''
 
-from utils import Fibonacci
+from utils import fibonacci
+import sys
 
-def ex2(num=4000000):
-    f=Fibonacci()
-    r=0
-    while True:
-        next=f.next()
-        if next>num:
-            break
-        elif next%2==0:
-            r+=next
-    return r
 
-if __name__ == "__main__":
-    print ex2()
+try:
+    num = int(sys.argv[1])
+except:
+    num = 4000000
+
+
+f = fibonacci()
+answer = 0
+for i in f:
+    if i > num:
+        break
+    elif i % 2 == 0:
+        answer += i
+
+print(answer)

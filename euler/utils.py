@@ -1,12 +1,10 @@
 import unittest
 
-class Fibonacci(object):
+def fibonacci():
     a, o=0, 1
-    def __init__(self):
-        pass
-    def next(self):
-        self.a, self.o = self.o, self.a+self.o
-        return self.o
+    while True:
+        a, o = o, a+o
+        yield o
 
 def fib_seq(num):
     seq=[]
