@@ -42,6 +42,12 @@ def next_prime(num):
     else:
         return 2
 
+
+def primes(num=0):
+    while True:
+        num = next_prime(num)
+        yield num
+
 def get_factors(num, short=False):
     from math import ceil
     from math import sqrt
