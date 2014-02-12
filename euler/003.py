@@ -8,19 +8,19 @@ What is the largest prime factor of the number 600851475143 ?
 '''
 from utils import is_prime
 from math import sqrt
+import sys
 
-target=600851475143
-target_sqrt=int(sqrt(target))
+
+try:
+    num = int(sys.argv[1])
+except:
+    num = 600851475143
+
+target_sqrt = int(sqrt(num))
 primes = []
 
-for e in range(3,target_sqrt,2):
-    if is_prime(e):
-        primes.append(e)
 
-primes.reverse() # reversing because i'm only looking for the largest
-primes.append(2) # the 2 needs to be here just in case
+answer = max(n for n in range(3, target_sqrt, 2)
+             if num % n == 0 and is_prime(n))
 
-for e in primes:
-    if target%e==0:
-        print e
-        break
+print (answer)
