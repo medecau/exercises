@@ -16,6 +16,6 @@ except:
     num = 1000
 
 
-answer = sum(filter(lambda x: not x % 3 or not x % 5, range(num)))
+answer = sum(n for n in range(num) if n % 3 == 0 or n % 5 == 0)
 
 print(answer)
