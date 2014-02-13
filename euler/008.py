@@ -25,13 +25,13 @@ Find the greatest product of five consecutive digits in the 1000-digit number.
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450
 '''
-number=open('008.txt', 'r').read().replace('\n','')
 
-largest=0
-for each in range(len(number)-4):
-    next=1
-    for num in number[each:each+5]:
-        next*=int(num)
-    if next>largest:
-        largest=next
-print largest
+sequence = open('008.txt', 'r').read().replace('\n', '')
+
+parts = (part for part in
+        (sequence[pos:pos+5] for pos in range(len(sequence)-4)))
+nums = (reduce(lambda x, y: x*int(y), part, 1) for part in parts)
+
+answer = max(nums)
+
+print(answer)
